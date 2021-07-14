@@ -1,0 +1,108 @@
+//=====> Mixins <========================================================================================================================================================
+//---> Подключение шрифта
+@mixin font($font_name, $file_name, $weight, $style) {
+	@font-face {
+		font-family: $font_name;
+		font-display: swap;
+		src: url("../fonts/#{$file_name}.woff") format("woff"), url("../fonts/#{$file_name}.woff2") format("woff2");
+		font-weight: #{$weight};
+		font-style: #{$style};
+	}
+}
+
+//---> Адаптивный шрифт
+@mixin adaptiv-font($pcSize, $mobSize, $maxSize) {
+	$addSize: $pcSize - $mobSize;
+	@if $maxSize==1 {
+		//Только если меньше контейнера
+		font-size: $pcSize + px;
+		@media (max-width: #{$maxWidthContainer + px}) {
+			font-size: calc(#{$mobSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidthContainer - 320}));
+		}
+	} @else if $maxSize==2 {
+		//Только если больше контейнера
+		font-size: $pcSize + px;
+		@media (min-width: #{$maxWidthContainer + px}) {
+			font-size: calc(#{$mobSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320}));
+		}
+	} @else {
+		//Всегда
+		font-size: calc(#{$mobSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320}));
+	}
+}
+
+//---> Адаптивное свойство
+@mixin adaptiv-value($property, $startSize, $minSize, $type) {
+	$addSize: $startSize - $minSize;
+	@if $type==1 {
+		//Только если меньше контейнера
+		#{$property}: $startSize + px;
+		@media (max-width: #{$maxWidthContainer + px}) {
+			#{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidthContainer - 320}));
+		}
+	} @else if $type==2 {
+		//Только если больше контейнера
+		#{$property}: $startSize + px;
+		@media (min-width: #{$maxWidthContainer + px}) {
+			#{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320}));
+		}
+	} @else {
+		//Всегда
+		#{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320}));
+	}
+}
+
+//=====> Vars <========================================================================================================================================================
+//---> <font>--------------------------------------------------------------------------------------------------------------------------------------------------------------
+//---> шрифт по умолчанию (уже подключен)
+$fontFamily: "Gilroy";
+//---> перечисление других шрифтов
+
+//===> font-size по умолчанию
+$fontSize: 16;
+// </font>--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// <color>--------------------------------------------------------------------------------------------------------------------------------------------------------------
+$mainColor: #3a3a3a;
+$c-000000: #000000;
+$c-333333: #333333;
+$c-616161: #616161;
+$c-898989: #898989;
+$c-828282: #828282;
+$c-B0B0B0: #b0b0b0;
+$c-C4C4C4: #c4c4c4;
+$c-D8D8D8: #d8d8d8;
+$c-FCF8F3: #fcf8f3;
+$c-F9F1E7: #f9f1e7;
+$c-F4F5F7: #f4f5f7;
+$c-FFFFFF: #ffffff;
+$c-262F56: #262f56;
+$c-2EC1AC: #2ec1ac;
+$c-E89F71: #e89f71;
+$c-E97171: #e97171;
+// $c-black: black;
+// $c-grey: grey;
+// $c-white: white;
+// $c-red: red;
+// $c-brown: brown;
+// $c-yellow: yellow;
+// $c-orange: orange;
+// $c-green: green;
+// $c-blue: blue;
+// $c-purple: purple;
+// </color>--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// <grid>--------------------------------------------------------------------------------------------------------------------------------------------------------------
+$minWidth: 320px;
+$maxWidth: 1440; // вписать ширину полотна
+$maxWidthContainer: 1270; // вписать ширину контейнера
+$md1: $maxWidthContainer + 12;
+$md2: 991.98;
+$md3: 767.98;
+$md4: 479.98;
+
+// </grid>--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//---> Заголовок
+%title {
+}

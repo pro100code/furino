@@ -1,0 +1,193 @@
+@use "sass:math";
+
+.inspirations {
+	// margin: 0 auto;
+	// max-width: 1350px;
+	// overflow: hidden;
+	@include adaptiv-value("padding-top", 40, 30, 1);
+	@include adaptiv-value("padding-bottom", 40, 30, 1);
+	background: $c-FCF8F3;
+
+	// .inspirations__container
+	&__container {
+		@media (min-width: $md2+px) {
+			display: flex;
+		}
+	}
+	// .inspirations__body
+	&__body {
+		flex: 0 0 math.div(465, 1240) * 100%;
+		align-self: center;
+		position: relative;
+		z-index: 5;
+		@media (min-width: $md2+px) {
+			@include adaptiv-value("padding-right", 80, 30, 1);
+		}
+		@media (max-width: $md2+px) {
+			@include adaptiv-value("margin-bottom", 30, 20, 1);
+			text-align: center;
+		}
+	}
+	// .inspirations__title
+	&__title {
+		text-align: center;
+		@media (min-width: $md2+px) {
+			&:not(:last-child) {
+				margin: 0px 0px math.div(8px, 40px) * 1em 0px;
+				text-align: left;
+			}
+		}
+	}
+	// .inspirations__text
+	&__text {
+		&:not(:last-child) {
+			margin: 0px 0px math.div(20px, 40px) * 1em 0px;
+		}
+	}
+	// .inspirations__btn
+	&__btn {
+		@media (max-width: $md2+px) {
+			margin: 0 auto;
+		}
+	}
+	// .inspirations__slider
+	&__slider {
+	}
+}
+
+.slider-inspirations {
+	flex: 1 1 auto;
+	min-width: 0;
+	position: relative;
+	@media (max-width: $md4+px) {
+		margin: 0 -15px;
+	}
+	// .slider-inspirations__body
+	&__body {
+		position: relative;
+		overflow: visible;
+		&::before {
+			content: "";
+			width: 100vw;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 2;
+			background: $c-FCF8F3;
+			transform: translate(-100%, 0px);
+		}
+	}
+	// .slider-inspirations__slide
+	&__slide {
+		width: 372px;
+		@include adaptiv-value("min-height", 585, 400, 1);
+		position: relative;
+		overflow: hidden;
+		@media (max-width: $md4+px) {
+			width: 100%;
+		}
+		&.swiper-slide-active {
+			.slider-inspirations__image {
+				height: 100%;
+			}
+		}
+	}
+	// .slider-inspirations__image
+	&__image {
+		height: 100%;
+		transition: height 0.8s ease 0s;
+		@media (min-width: $md3+px) {
+			height: 83%;
+		}
+	}
+	// .slider-inspirations__content
+	&__content {
+		@include adaptiv-value("padding", 32, 15, 1);
+		max-width: 240px;
+		position: absolute;
+		@include adaptiv-value("left", 24, 15, 1);
+		@include adaptiv-value("bottom", 24, 15, 1);
+		background: rgba(255, 255, 255, 0.9);
+		/* Если браузер поддерживает backdrop-filter */
+		@supports ((-webkit-backdrop-filter: blur(31px)) or (backdrop-filter: blur(31px))) {
+			background: rgba(255, 255, 255, 0.72);
+			backdrop-filter: blur(31px);
+		}
+		&::before {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 48px;
+			height: 48px;
+			position: absolute;
+			right: 0;
+			bottom: 0;
+			background: $c-E89F71;
+			color: $c-FFFFFF;
+			transform: translate(100%, 0);
+		}
+	}
+	// .slider-inspirations__label
+	&__label {
+	}
+	// .slider-inspirations__arrows
+	&__arrows {
+		display: flex;
+		justify-content: space-between;
+		width: calc(100% - 48px);
+		position: absolute;
+		left: 24px;
+		top: 50%;
+		z-index: 5;
+		pointer-events: none;
+		transform: translate(0, -50%);
+		@media (min-width: $md1+px) {
+			width: calc(100% + 48px);
+			left: -24px;
+		}
+	}
+	// .slider-inspirations__arrow
+	&__arrow {
+	}
+	// .slider-inspirations__dotts
+	&__dotts {
+		@media (max-width: $md3+px) {
+			justify-content: center;
+			padding: 15px 0px 0px 0px;
+		}
+		@media (min-width: $md3+px) {
+			width: 100%;
+			position: absolute;
+			left: 396px;
+			bottom: 30px;
+		}
+	}
+}
+
+.label-slider {
+	display: grid;
+	grid-template-columns: auto 27px auto;
+	align-items: center;
+	justify-content: flex-start;
+	gap: 8px;
+	color: $c-616161;
+	&:not(:last-child) {
+		margin: 0px 0px 8px 0px;
+	}
+	// .label-slider__number
+	&__number {
+	}
+	// .label-slider__line
+	&__line {
+		width: 27px;
+		height: 1px;
+		background: $c-616161;
+	}
+	// .label-slider__text
+	&__text {
+	}
+	// .label-slider__title
+	&__title {
+	}
+}

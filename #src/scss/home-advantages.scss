@@ -1,0 +1,56 @@
+@use "sass:math";
+
+.advantages {
+	@include adaptiv-value("padding-top", 88, 30, 1);
+	@include adaptiv-value("padding-bottom", 88, 30, 1);
+	// .advantages__container
+	&__container {
+	}
+	// .advantages__row
+	&__row {
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		@media (max-width: $md2+px) {
+			justify-content: center;
+		}
+		@media (max-width: $md3+px) {
+			justify-content: space-between;
+		}
+	}
+	// .advantages__column
+	&__column {
+		display: inline-grid;
+		grid-template: auto auto / 85px 1fr;
+		padding: 15px 0;
+		@media (max-width: $md2+px) {
+			min-width: 288px;
+		}
+		@media (max-width: $md3+px) {
+			grid-template: auto auto / auto 1fr;
+		}
+	}
+	// .advantages__image
+	&__image {
+		grid-row: span 2;
+		text-align: center;
+		align-self: center;
+		@media (max-width: $md3+px) {
+			padding: 0px 15px 0px 0px;
+		}
+	}
+	// .advantages__title
+	&__title {
+		margin: 0px 0px math.div(2px, 18px) * 1em 0px;
+		font-size: 18px;
+		font-weight: 600;
+		line-height: 150%;
+	}
+	// .advantages__text
+	&__text {
+		font-size: 16px;
+		font-weight: 500;
+		line-height: 150%;
+		color: $c-898989;
+	}
+}
